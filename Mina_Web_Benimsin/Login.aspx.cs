@@ -15,8 +15,10 @@ namespace Mina_Web_Benimsin
             {
                 if (Request.Cookies["UserName"] != null && Request.Cookies["Password"] != null)
                 {
-                    txtUserName.Text = Request.Cookies["UserName"].Value;
-                    txtPassword.Attributes["value"] = Request.Cookies["Password"].Value;
+                    //txtUserName.Text = Request.Cookies["UserName"].Value;
+                    //txtPassword.Attributes["value"] = Request.Cookies["Password"].Value;
+
+                    Response.Redirect("Search.aspx");
                 }
             }
         }
@@ -25,8 +27,8 @@ namespace Mina_Web_Benimsin
         {
             if (chkRememberMe.Checked)
             {
-                Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(30);
-                Response.Cookies["Password"].Expires = DateTime.Now.AddDays(30);
+                Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(1);
+                Response.Cookies["Password"].Expires = DateTime.Now.AddDays(1);
             }
             else
             {
@@ -36,6 +38,8 @@ namespace Mina_Web_Benimsin
 
             Response.Cookies["UserName"].Value = txtUserName.Text.Trim();
             Response.Cookies["Password"].Value = txtPassword.Text.Trim();
+
+            Response.Redirect("Search.aspx");
         }
     }
 }
